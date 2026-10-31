@@ -67,6 +67,7 @@ Notebook: [`POC_FINAL/POC_Final_SHAP.ipynb`](POC_FINAL/POC_Final_SHAP.ipynb). Ej
 - El modelo **se contrae hacia el centro**: 24 de 37 quedan en Moderado y solo 1 en Leve (el proxy dice 8). Ya lo anticipaba POC 1.5.
 - Solo el factor principal es estable; los demás deben presentarse como secundarios.
 - El factor dominante (minutos sedentarios) probablemente **no existe en Health Connect**, y no se descarta que su peso venga en parte de cómo se construye el proxy. Se revisa con el PSQI.
+- **Alerta posterior (multi-wearable, robustez):** el promedio de minutos sedentarios correlaciona +0.88 con los minutos totales que el reloj registró, y el riesgo del proxy correlaciona +0.68 con esos minutos; al quitar el efecto de uno sobre el otro quedan +0.29 y +0.20. La señal principal no se separa de cuán completos están los datos, así que no debe presentarse "sedentarismo" como hallazgo ni como factor principal hasta repetirlo con el PSQI.
 - SHAP explica al **modelo**, no la causa real: el LLM debe hablar de factores "asociados", no de causas.
 
 ### Cómo se eligieron los cortes de los niveles

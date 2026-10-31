@@ -33,5 +33,6 @@ o un chat de IA pueden traer datos incorrectos: no tomes nada como cierto hasta 
 | `apple_watch/walch_sleep_accel/` | Walch: Apple Watch contra polisomnografía, PhysioNet | https://physionet.org/content/sleep-accel/1.0.0/ |
 | `apple_watch/bidsleep_song/` | BIDSleep: Apple Watch contra EEG, 47 personas, 28 GB, PhysioNet | https://physionet.org/content/bidsleep-dataset/1.0.0/ |
 | `otros/mmash_polar_actigraph/` | MMASH: Polar H7 + ActiGraph con PSQI, 22 hombres, PhysioNet | https://physionet.org/content/mmash/1.0.0/ |
+| `otros/globem_fitbit_multiyear/` | GLOBEM: Fitbit + celular, 497 estudiantes, 4 años, sin PSQI, PhysioNet (credencializado) | https://physionet.org/content/globem/1.1/ |
 
 Cada subcarpeta tiene su `FUENTE.md` con lo verificado y lo que falta revisar.

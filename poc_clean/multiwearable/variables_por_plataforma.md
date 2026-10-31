@@ -151,3 +151,28 @@ Hallazgos de esta sesión (2026-09-17 a 19), pendientes de decidir cómo documen
   coinciden con la Tabla 2; su afirmación de que Fitbit no expone el Sleep Score por API ni export quedó sin verificar.
 - La etiqueta definitiva será el PSQI de la Capa A. LifeSnaps no tiene PSQI y no se encontró otro dataset accesible
   con reloj + PSQI, así que ese dato debe recolectarse con participantes propios.
+
+## 9. Protocolo para cuando lleguen los relojes (verificación física)
+
+Objetivo: reemplazar las suposiciones de la tabla de la sección 3 por lo que realmente entrega cada reloj. **Los nombres de menús
+cambian según la versión de Android y de cada app: confirmarlos en el momento.**
+
+1. Emparejar cada reloj con la app de su marca (Fitbit, Samsung Health, Zepp, Mi Fitness) en un teléfono Android con Health Connect,
+   y **activar la sincronización con Health Connect** dentro de esa app.
+2. Usar cada reloj **al menos 10 noches** (la capa de estandarización rechaza a quien tiene menos), aunque para la primera revisión
+   bastan 3.
+3. En Health Connect, mirar por app y por categoría qué tipos de dato aparecen y anotar en la tabla de abajo.
+4. Comparar, en la app de la marca y en Health Connect, los **minutos despierto** y la **eficiencia** de las mismas noches: es la
+   sospecha que dejó el dato de Xiaomi (6.6 min despierto contra 50.6 en Fitbit).
+5. Si la app permite pedir o exportar los datos propios (Mi Fitness, Zepp, Samsung Health), guardar la exportación en
+   `datasets/<marca>/` con su `FUENTE.md`: sirve para escribir el adaptador real, como se hizo con Xiaomi.
+6. Opcional, si se puede: dos relojes a la vez (uno en cada muñeca) durante 7 noches. Es la comparación directa entre marcas.
+
+| Reloj | App de origen | Tipos de dato que llegan a Health Connect | Días con dato | ¿Pulso en reposo? | ¿Minutos despierto? | ¿SpO2? | Notas |
+|---|---|---|---|---|---|---|---|
+| Galaxy Watch FE | | | | | | | |
+| Fitbit Charge 6 | | | | | | | |
+| Amazfit Bip 5 | | | | | | | |
+| Xiaomi Smart Band 9 | | | | | | | |
+
+**Pruebas de robustez ya hechas con datos sintéticos:** `POC_Multiwearable_Robustez.ipynb`.

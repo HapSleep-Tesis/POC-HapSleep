@@ -1,0 +1,107 @@
+# HapSleep — contexto del proyecto (tesis)
+
+Este archivo es memoria de proyecto para Codex. Léelo completo antes de tocar cualquier PoC — evita repetir trabajo ya hecho, fugas de datos ya corregidas, y decisiones ya cerradas que no hay que relitigar.
+
+## Qué es HapSleep
+
+App que predice el riesgo de mala calidad de sueño en estudiantes universitarios de Lima usando datos de smartwatch, y un LLM que genera recomendaciones a partir de ese riesgo. Arquitectura simplificada: **ML1** (modelo de clasificación de riesgo) + **LLM** (recomendaciones a partir del output de ML1). En código/docs más viejos puede aparecer como C2 (=ML1) y C3 (=LLM) — son lo mismo.
+
+## Decisiones ya cerradas (no las relitigues)
+
+- **Contexto de la tesis y criterio de éxito (definido en conversación).** Es una tesis de **ingeniería de software**: el producto es la app; ML1 es un componente que aporta, no el fin. La validación final tendrá **como máximo ~50 usuarios**. No se persigue maximizar el F1: se busca un sistema que funcione de punta a punta y un ML1 con señal demostrable por encima del azar, con incertidumbre reportada y factores explicables. El criterio numérico de aceptación de ML1 se fija con el asesor (no inventar un umbral). Por ahora el usuario pidió **dejar el PSQI en pausa** y enfocarse en los PoC.
+- **Random Forest elegido para ML1 por interpretabilidad**, para poder alimentarle al LLM un ranking de factores de riesgo explicable. Se comparó contra Logistic Regression, XGBoost y SVM con la misma metodología (ver poc1) — RF no pierde desempeño relevante y gana interpretabilidad. Esto ya se validó, no hay que reabrir la discusión de "qué modelo usar" sin una razón nueva y concreta.
+- **Deep Learning descartado para ML1, con respaldo de literatura (no es una suposición).** Se le preguntó explícitamente a la literatura de la tesis (vía NotebookLM, con las fuentes cargadas del proyecto) si algún estudio usa o recomienda DL para clasificación de riesgo sobre datos tabulares agregados por persona con n<200. Respuesta con cita: ninguna fuente lo hace — los usos de DL en la literatura del dominio son sobre señales crudas época-por-época (otra tarea, ej. Kim et al. 2025 para apnea). La misma consulta identificó SVM como el modelo clásico "pendiente" que sí respalda la literatura (Aziz et al. 2025: 3er algoritmo más usado en 46 estudios de wearables, 26.1%, detrás de RF). Por eso se agregó SVM a la comparación de poc1 y no se agregó DL. No relitigar esto sin una fuente nueva y concreta.
+- **El riesgo es un constructo estable de la PERSONA, no de una noche puntual.** Ya validado en un análisis de autocorrelación/estabilidad previo (r=0.727): la calidad de sueño noche-a-noche es ~impredecible (lag-1 autocorr ≈ 0), pero el riesgo agregado por persona es estable. Todo el feature engineering agrega a nivel de persona (mean/std entre días), nunca predice noche por noche.
+- **Nunca reportar accuracy pelada con clases desbalanceadas** (~25% de riesgo alto). Siempre F1 + ROC-AUC + PR-AUC contra un baseline trivial (predice siempre la clase mayoritaria).
+- **Un solo K-Fold no alcanza con esta n.** Se comprobó empíricamente (poc1) que un solo Stratified 5-Fold tiene varianza enorme con n=71-150: el F1 de una sola corrida osciló entre 0.29 y 0.61 solo por la semilla del split. **Siempre usar Repeated Stratified K-Fold (20 repeticiones) y reportar mean ± std**, no un solo número. Esto aplica a cualquier PoC nuevo que evalúe un modelo.
+- **La etiqueta actual es un proxy**, no la etiqueta real. LifeSnaps (el dataset real usado en poc1) no tiene PSQI (Pittsburgh Sleep Quality Index) — se usa `sleep_points_percentage` (bottom 25% = riesgo alto) como proxy. Cuando existan los datos reales de la Capa A (encuesta PSQI, n≥50), hay que reemplazar la función de etiqueta por el Global PSQI Score (≥5 = mala calidad) y volver a correr todo. Los resultados de hoy no van al TI como resultado final del modelo con etiqueta real.
+
+## Fugas de datos ya encontradas y corregidas — no las repitas
+
+Dos fugas reales se encontraron y corrigieron en poc1 (documentadas en `poc1/README.md`, punto 5 de limitaciones):
+1. Dejar `sleep_points_percentage_mean` (fuente de la etiqueta) también como feature → resultados circulares.
+2. Dejar el `_std` de esa misma columna cruda después de excluir el `_mean` → sigue siendo fuga, porque ambas vienen de la misma medición.
+
+**Regla:** cada vez que cambies de dónde sale la etiqueta (por ejemplo, al conectar el PSQI real), excluye TODAS las variantes agregadas (`_mean`, `_std`, etc.) de la columna cruda usada, no solo la exacta. Con el PSQI real esta fuga específica no puede repetirse (es una fuente 100% independiente del wearable), pero el chequeo ("¿alguna feature de entrada deriva de la misma medición que la etiqueta?") vale la pena repetirlo siempre.
+
+## poc1/ — Random Forest sobre datos REALES (LifeSnaps, n=71)
+
+Dataset real: LifeSnaps (Fitbit Sense), Nature *Scientific Data* 2022, n=71 personas, 7,410 filas día-persona. Mismo dataset ya usado en el análisis de autocorrelación/estabilidad de la tesis.
+
+**Resultado oficial (Repeated Stratified 5-Fold, 20 repeticiones):**
+
+| Métrica | Valor |
+|---|---|
+| F1 | 0.478 ± 0.077 |
+| ROC-AUC | 0.728 ± 0.033 |
+| PR-AUC | 0.481 ± 0.046 |
+| Precisión | 0.531 ± 0.079 |
+| Recall | 0.439 ± 0.084 |
+
+**Hallazgos clave (detalle completo en `poc1/FINDINGS_POC1.md` y `poc1/README.md`):**
+- El F1=0.25 que se documentó originalmente (una sola corrida de 5-Fold) NO era el techo real del problema — era una corrida particularmente desafortunada. El número honesto es el de arriba.
+- Se probó agregar STAI (ansiedad) y PANAS (afecto) del export completo de encuestas de LifeSnaps como features psicológicas — no mejoran el modelo de forma robusta bajo repeated CV (parecía que sí con una sola semilla; era ruido). Se descartaron del pipeline oficial. Código del experimento en `poc1/checks/robustness_check.py` por si mejora la cobertura de encuestas (hoy 53-51/71 personas) y vale la pena reintentarlo.
+- Gini importance y permutation importance NO coinciden en el top-1 factor exacto (`minutesAwake_std` vs. `sedentary_minutes_mean`), pero las magnitudes son marginales y el top-4 cluster es estable: inconsistencia de sueño/vigilia noche a noche + inactividad. Recomendación de diseño: el payload C2→LLM debería comunicar "factores principales" en plural, no un solo ganador.
+- LR vs. RF vs. XGBoost vs. SVM (misma metodología): ningún modelo domina en todo. RF tiene mejor F1 (0.478), XGBoost mejor ROC-AUC/PR-AUC (0.755/0.493) pero peor recall (0.356), LR competitivo en F1 pero ROC-AUC más bajo (0.669). SVM (agregado después, ver "Deep Learning descartado" arriba) da F1 muy bajo (0.088) pese a ROC-AUC razonable (0.668) — probable inestabilidad de la calibración interna de `predict_proba` (Platt scaling) con una clase minoritaria tan chica; se reportó tal cual, sin ajustar el umbral para mejorar el número.
+- No existe un benchmark de la literatura directamente comparable (n≈70-100 universitarios, riesgo por persona, RF) — documentado con 7 papers/revisión en `poc1/README.md`, sección "Contexto de benchmark en la literatura". Razón: task mismatch (la mayoría evalúa clasificación época-por-época contra PSG) y population mismatch (el único ROC-AUC alto de la literatura es en adultos mayores con regresión logística).
+
+**Pendiente de poc1:** `poc1/discusion_cap4_metricas.md` tiene un borrador de discusión para el Cap. 4 del TI (por qué F1+ROC-AUC en vez de accuracy) — NO está incorporado a ningún `.docx` todavía, y las citas vienen de una búsqueda asistida (NotebookLM) que no se verificó contra los PDFs originales.
+
+## poc_clean/ — versiones "de presentación" para el asesor
+
+`poc_clean/POC1/POC1_HapSleep.ipynb` es un notebook Jupyter, documentado y ejecutado
+celda por celda, que reproduce EXACTAMENTE el pipeline y los resultados oficiales de
+`poc1/` (RF/LR/XGBoost/SVM) — no introduce metodología nueva, solo reordena y documenta
+para mostrar avances. Los números se verificaron idénticos a los de `poc1/` antes de darlo
+por bueno. Si se agrega otro PoC "de presentación" en el futuro, sigue el mismo patrón:
+notebook ejecutado con outputs guardados + README con el prompt/respuesta de literatura que
+respalde cualquier extensión metodológica (no inventar nada sin ese respaldo).
+
+## poc2/ — ML1 sobre datos SINTÉTICOS de wearable (n=150)
+
+Datos generados por nosotros (no de ningún dataset público), con un `latent_risk` verdadero por persona guardado aparte y nunca visto por el modelo — para validar la arquitectura del pipeline, no el desempeño esperado en producción.
+
+**Resultado (Repeated Stratified 5-Fold, 20 repeticiones):** F1 = 0.869 ± 0.019, ROC-AUC = 0.988 ± 0.002, PR-AUC = 0.967 ± 0.005.
+
+**Validación contra ground truth (solo posible porque los datos son sintéticos):** correlación de Spearman entre `risk_probability` predicho y `latent_risk` real = 0.898; ROC-AUC contra la etiqueta verdadera = 0.991; acuerdo entre la etiqueta proxy y la verdadera = 97.3%.
+
+**Hallazgos clave (detalle en `poc2/FINDINGS_POC2.md` y `poc2/README.md`):**
+- El pipeline recupera casi perfectamente una señal de riesgo conocida cuando existe → confirma que la arquitectura (agregación por persona, feature engineering, RF, evaluación) está bien construida.
+- **Estos números NO son comparables con poc1** y no deben citarse como desempeño esperado en el TI — los datos sintéticos son más limpios que la realidad por diseño.
+- Hallazgo lateral importante: incluso en un mundo sintético limpio, la etiqueta proxy solo coincide 97.3% con el riesgo real — en poc1, donde el proxy es la única etiqueta disponible, ese desacuerdo real casi seguro es mayor. Refuerza la importancia de conseguir los datos reales de PSQI (Capa A).
+
+## Pendiente / próximos pasos (a la fecha de este resumen)
+
+1. **PoC del LLM (pendiente, no empezado):** usar payloads sintéticos tipo `poc1/c2_output_sample.json` (risk_level, risk_probability, top_risk_factor, feature importance) para probar cómo el LLM genera recomendaciones a partir del output de ML1. Va en un PoC 3 aparte cuando se retome.
+2. Revisar y verificar `poc1/discusion_cap4_metricas.md` contra las fuentes primarias antes de incorporarlo al `.docx` del TI.
+3. Cuando existan los datos reales de PSQI (Capa A), reemplazar la etiqueta proxy en poc1 y volver a correr todo el pipeline — los resultados actuales no son finales.
+4. Si se quiere estresar más el pipeline de poc2 (no solo confirmarlo), repetir con más ruido / missing data inyectado / relación no lineal entre features y riesgo.
+5. **PoC multi-wearable (después de cerrar poc1):** investigación ya hecha en `poc_clean/multiwearable/variables_por_plataforma.md` (qué variables entrega cada reloj Android vía Health Connect / Google Health API). Ese documento también recoge hallazgos sobre la etiqueta de poc1 aún no reflejados en este archivo ni en `poc1/README.md`: `sleep_points_percentage` no es un Sleep Score (es un derivado del Stress Score de Fitbit, solo 37/71 personas; las otras 34 quedan etiquetadas "bajo riesgo" por imputación). La verificación con solo las 37 personas ya se corrió (POC 1.1, `poc_clean/POC1_1/`): Random Forest sube de ROC-AUC 0.728 a 0.936 (0.830 con cuartil propio), o sea que las 34 personas rellenadas *rebajaban* el resultado de poc1 (le metían ruido a la etiqueta) y el 0.73 es una cota conservadora, no un techo. POC 1.2 mostró que sin pulso ni actividad el ROC-AUC cae más (0.936 → 0.820) que sin variables de sueño (→ 0.918). Con n=37 es ruidoso y probablemente optimista. POC 1.3 (`poc_clean/POC1_3/`) ensayó el diseño final de ML1: predecir un puntaje continuo (más alto = peor, como el PSQI) y aplicar un corte fijo después, en vez de una etiqueta por percentil, que es relativa al grupo y se rompería en una población donde casi todos duermen mal. Random Forest: Spearman 0.70, MAE 0.108 (baseline 0.165), y un solo modelo sirve para cortes con 22–78% de prevalencia (ROC-AUC 0.79–0.93). Salida propuesta de ML1: índice estimado + rango + probabilidad de superar el corte + zona gris + factores + calidad de datos. POC 1.5 (`poc_clean/POC1_5/`, laboratorio sintético, NO desempeño real) matizó eso: la etiqueta por percentil marca ~30% como riesgo alto en cualquier población (se rompe si casi todos duermen mal), el corte fijo sigue a la realidad, y el puntaje continuo con corte se contrae hacia el promedio cuando el reloj refleja poco del puntaje (falla en poblaciones extremas), así que el nivel de riesgo debería salir de un clasificador con corte fijo y el puntaje continuo servir para graduar. El F1 solo engaña con prevalencia alta o señal débil (usar ROC-AUC vs baseline). Con 50 personas el ROC-AUC varía ±0.1 solo por muestreo; lo que más pesa es cuánto del puntaje refleja el reloj (desconocido). Decisión del equipo: la etiqueta se sigue llamando "puntaje de sueño de Fitbit"; hallazgos completos en `poc_clean/POC1/POC1_FINDINGS.md`. Falta decidir si se refleja en `poc1/README.md` y en este archivo.
+
+6. **POC final con SHAP (hecho):** `poc_clean/POC_FINAL/POC_Final_SHAP.ipynb` + resumen de todos los PoC en `poc_clean/INFORME_POCs.md`. Diseño: RF estima el índice (leave-one-out, 37 personas) → TreeSHAP agrupado en 5 grupos → **regla fija en código** (no el LLM) que da Leve ≤5 / Moderado 6–10 / Alto >10 en escala PSQI (5 = Buysse, validado; 10 = convención; propuesta con fuente sin verificar contra PDFs; el usuario define los cortes finales) → payload al LLM (`payload_examples.json`). Hallazgos: SHAP fiel y factor principal estable (*sedentarismo*), pero el modelo se contrae al centro (casi todos Moderado) y minutos sedentarios probablemente no está en Health Connect. Siguiente: PoC del LLM (con vs. sin factores SHAP). El paper del compañero es `paper_es.md`; ajustes sugeridos a sus variables están en el informe (latencia inservible: 99.4 % ceros).
+
+7. **PoC multi-wearable A+B (ensayo exploratorio, no es resultado final):** `poc_clean/multiwearable/POC_Multiwearable.ipynb`. Objetivo del usuario: una sola app/modelo para Fitbit, Galaxy Watch, Xiaomi y Amazfit (Android/Health Connect). Hallazgos: con solo las variables de cada reloj el RF baja de Spearman 0.70 a 0.36–0.43 (ROC-AUC Alto 0.82 a 0.73–0.76), casi todo por perder `sedentary_minutes` (núcleo común + sedentarios = 0.66); posible artefacto del proxy (el Stress Score usa actividad). Capa de estandarización (adaptador, rangos, dedup, elegir perfil, rechazo con <10 noches) funciona; no mide diferencias reales entre algoritmos de marcas (solo datos Fitbit). Pendiente: verificación física en Health Connect, aproximar sedentarios. **Datos reales de otras marcas** (descargados a mano en `poc_clean/multiwearable/datasets/`, ignorados por git, con fichas `FUENTE.md`): Xiaomi Mi Band (Zenodo 15171250) tiene solo 4 usuarios; Garmin (Zenodo 17967723) son alumnos de colegio con mediana de 4.5 noches y sin pulso en reposo: descartado; MMASH (PhysioNet) 22 hombres con PSQI 2–9 y una noche. Notebook `POC_Multiwearable_Datos_Reales.ipynb`: el adaptador real de Xiaomi tuvo que derivar el pulso en reposo (solo 1 de 4 usuarios lo trae); minutos despierto y eficiencia de Xiaomi (6.6 y 98.6 %) difieren mucho de LifeSnaps (50.6 y 94.2 %), posible definición distinta entre marcas; en MMASH no se detecta relación PSQI-sueño (n=21). Ninguno de estos datasets sirve para entrenar ni validar. **Robustez (`POC_Multiwearable_Robustez.ipynb`, datos sintéticos = copias distorsionadas de LifeSnaps con sesgos por marca de estudios contra PSG: Schyvens 2025 para Fitbit/Garmin/Withings/Apple/Whoop, Mi Band 5 en JMIR 2023, Galaxy Watch 3 en J Sleep Med 2023; Amazfit sin validación, se supuso igual a Xiaomi):** los sesgos conocidos casi no degradan el modelo (Spearman 0.36–0.44 vs 0.40; deriva ≤0.7 pts PSQI), pero solo porque el modelo casi no usa variables de sueño con este proxy; aproximar `sedentary_minutes` con pasos/distancia/calorías/pulso recupera poco y sin consistencia (R² diario 0.18–0.33); un núcleo sin eficiencia ni minutos despierto rinde igual. **ALERTA:** `sedentary_minutes_mean` correlaciona +0.88 con los minutos totales registrados (tiempo con reloj puesto) y el riesgo del proxy +0.68 con estos; al controlar uno por otro quedan +0.29 y +0.20: la señal principal del modelo no se separa de la completitud de los datos. No presentar "sedentarismo" como hallazgo/factor principal ni al LLM hasta separarlo (repetir con PSQI). Protocolo para los relojes que llegan: sección 9 de `variables_por_plataforma.md`.
+
+8. **PoC del LLM (hecho, `poc_clean/POC_LLM/`):** Gemma 3 4B (37 personas) y DeepSeek-R1-Distill-Qwen-7B (8 personas, lento) locales en CPU; **GPT en Azure OpenAI (propuesta del Objetivo 2) NO se ejecutó** (faltan credenciales; el adaptador está listo) y **la evaluación experta (rúbrica 1–5) está pendiente** (hoja ciega generada). Hallazgos: sin factores (C0) el LLM inventa (estrés, pantallas); con factores (C1) menciona el factor principal (97 %) pero **46 % de los textos contradice los valores** (lectura manual preliminar: 57 %); verbalizar el sentido por código (C2) baja las contradicciones a 22 % (McNemar p=0.02) pero alarga el texto; nadie llega al 90 % de validación del Objetivo 2 (Gemma 59 %); la plantilla de respaldo pasa 37/37. Seguridad: Gemma 100 %, DeepSeek 88 % (una causa afirmada). El validador es heurístico y se ajustó tras ver resultados (documentado). Benchmark de LLM insertado en el informe de benchmark (sección 6) con fuentes marcadas `[FUENTE: …]` por completar (`PROMPT_NOTEBOOKLM.md`). Ojo: el efecto SHAP de un factor puede ir contra la intuición del valor (pulso bajo que sube el riesgo) y confunde al modelo pequeño.
+
+## Notas de entorno
+
+- **Esta PC (la de la sesión de "poc_clean"):** Python 3.11.9 vía Microsoft Store, con un venv del proyecto en `.venv/` (activar con `.\.venv\Scripts\Activate.ps1`). El `python.exe`/`python3.exe` genéricos de Windows tenían el App Execution Alias deshabilitado — se armó un shim en `C:\Users\josec\bin\` + PATH de usuario para que `python`/`pip` funcionen en cualquier terminal nueva. Paquetes instalados: `pandas numpy scikit-learn scipy xgboost jupyter nbformat nbclient ipykernel matplotlib seaborn`.
+- **La laptop original (donde se hizo poc1/poc2):** Python 3.14 en `/c/Python314/python` — puede no aplicar en esta PC, ver punto anterior.
+- `C:\develop\tesis\POC 1\` (con espacio, ruta de la laptop original) / `POC 1/` (respaldo intacto que viajó con el repo) — estado de poc1 antes de la sesión de limpieza, no se usa activamente. El trabajo vigente está en `poc1/` (sin espacio) y `poc_clean/`.
+- El dataset crudo completo de LifeSnaps (incluyendo el dump de Mongo, ~9GB, no usado por ningún script) vive fuera del repo en `F:\Developing\Tesis\POC\rais_anonymized_raw\` — los CSV que sí se usan ya están commiteados dentro de `poc1/rais_anonymized/rais_anonymized/` y copiados en `poc_clean/POC1/data/`.
+
+## Forma de trabajar con el usuario
+
+- No es estadístico y debe poder explicarle todo a su asesor/coautor: explicar en español sencillo, con números reales de los datos, y verificar con datos antes de afirmar.
+- No inventar literatura ni cifras. Si no hay fuente, darle un prompt para su NotebookLM (tiene sus fuentes cargadas) en vez de suponer.
+- No modificar `poc1/README.md` sin visto bueno explícito (pidió esperar). La etiqueta se sigue llamando "puntaje de sueño de Fitbit".
+- Los notebooks de `poc_clean/` son la fuente de verdad; correrlos con `PYTHONUTF8=1` en Windows (`jupyter nbconvert --to notebook --execute --inplace`).
+
+## Disciplina a mantener en cualquier PoC nuevo
+
+- Repeated Stratified K-Fold (20 repeticiones), no un solo split ni un solo K-Fold — n siempre va a ser chica en este proyecto.
+- F1 + ROC-AUC + PR-AUC contra baseline trivial, nunca accuracy pelada.
+- Revisar fuga de datos cada vez que cambie de dónde sale la etiqueta (¿alguna feature deriva de la misma medición?).
+- Si se agregan features nuevas y "mejoran" el resultado con una sola corrida/semilla, validar con repeated CV antes de creerlo — ya pasó una vez (STAI/PANAS en poc1) que era ruido.
+- Documentar honestamente qué es dato real vs. sintético en cualquier README nuevo — no mezclar los dos sin aclararlo explícitamente.

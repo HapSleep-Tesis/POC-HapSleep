@@ -1,0 +1,1588 @@
+{
+ "621e2e8e67b776a24055b564": {
+  "student_id": "621e2e8e67b776a24055b564",
+  "risk_level": "Moderado",
+  "estimated_risk_index": 0.274,
+  "estimated_range_90": [
+   0.066,
+   0.575
+  ],
+  "levels_in_range": [
+   "Leve",
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [
+   {
+    "group": "Frecuencia cardíaca y HRV",
+    "shap_contribution": 0.01,
+    "direction": "sube el riesgo",
+    "main_variable": "resting_hr_mean",
+    "person_value": 59.9,
+    "group_median": 65.57
+   }
+  ],
+  "protective_factor": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": -0.118,
+    "direction": "baja el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 742.31,
+    "group_median": 874.7
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 63,
+   "missing_variables": [
+    "spo2"
+   ]
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e2eaf67b776a2406b14ac": {
+  "student_id": "621e2eaf67b776a2406b14ac",
+  "risk_level": "Moderado",
+  "estimated_risk_index": 0.282,
+  "estimated_range_90": [
+   0.073,
+   0.583
+  ],
+  "levels_in_range": [
+   "Leve",
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [],
+  "protective_factor": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": -0.085,
+    "direction": "baja el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 588.91,
+    "group_median": 874.7
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 83,
+   "missing_variables": [
+    "spo2"
+   ]
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e2f1b67b776a240b3d87c": {
+  "student_id": "621e2f1b67b776a240b3d87c",
+  "risk_level": "Moderado",
+  "estimated_risk_index": 0.303,
+  "estimated_range_90": [
+   0.095,
+   0.605
+  ],
+  "levels_in_range": [
+   "Leve",
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [
+   {
+    "group": "Regularidad del sueño (variación entre noches)",
+    "shap_contribution": 0.029,
+    "direction": "sube el riesgo",
+    "main_variable": "sleep_efficiency_std",
+    "person_value": 3.65,
+    "group_median": 2.7
+   }
+  ],
+  "protective_factor": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": -0.103,
+    "direction": "baja el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 631.48,
+    "group_median": 874.7
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 76,
+   "missing_variables": [
+    "spo2"
+   ]
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e2f3967b776a240c654db": {
+  "student_id": "621e2f3967b776a240c654db",
+  "risk_level": "Moderado",
+  "estimated_risk_index": 0.39,
+  "estimated_range_90": [
+   0.182,
+   0.691
+  ],
+  "levels_in_range": [
+   "Leve",
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [
+   {
+    "group": "Regularidad del sueño (variación entre noches)",
+    "shap_contribution": 0.053,
+    "direction": "sube el riesgo",
+    "main_variable": "sleep_duration_inconsistency",
+    "person_value": 163.35,
+    "group_median": 82.62
+   },
+   {
+    "group": "Respiración y oxígeno",
+    "shap_contribution": 0.024,
+    "direction": "sube el riesgo",
+    "main_variable": "full_sleep_breathing_rate_std",
+    "person_value": 5.76,
+    "group_median": 0.84
+   },
+   {
+    "group": "Frecuencia cardíaca y HRV",
+    "shap_contribution": 0.01,
+    "direction": "sube el riesgo",
+    "main_variable": "nremhr_std",
+    "person_value": 21.89,
+    "group_median": 4.7
+   }
+  ],
+  "protective_factor": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": -0.089,
+    "direction": "baja el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 812.3,
+    "group_median": 874.7
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 62,
+   "missing_variables": [
+    "spo2"
+   ]
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e2f5767b776a240d8f9d6": {
+  "student_id": "621e2f5767b776a240d8f9d6",
+  "risk_level": "Alto",
+  "estimated_risk_index": 0.601,
+  "estimated_range_90": [
+   0.393,
+   0.902
+  ],
+  "levels_in_range": [
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": 0.2,
+    "direction": "sube el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 1184.15,
+    "group_median": 874.7
+   }
+  ],
+  "protective_factor": [
+   {
+    "group": "Frecuencia cardíaca y HRV",
+    "shap_contribution": -0.011,
+    "direction": "baja el riesgo",
+    "main_variable": "resting_hr_mean",
+    "person_value": 65.57,
+    "group_median": 65.57
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 22,
+   "missing_variables": [
+    "rmssd",
+    "nremhr",
+    "spo2",
+    "full_sleep_breathing_rate"
+   ]
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e2f6167b776a240e082a9": {
+  "student_id": "621e2f6167b776a240e082a9",
+  "risk_level": "Moderado",
+  "estimated_risk_index": 0.362,
+  "estimated_range_90": [
+   0.154,
+   0.663
+  ],
+  "levels_in_range": [
+   "Leve",
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [],
+  "protective_factor": [
+   {
+    "group": "Respiración y oxígeno",
+    "shap_contribution": -0.023,
+    "direction": "baja el riesgo",
+    "main_variable": "full_sleep_breathing_rate_std",
+    "person_value": 0.83,
+    "group_median": 0.84
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 45,
+   "missing_variables": []
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e2f9167b776a240011ccb": {
+  "student_id": "621e2f9167b776a240011ccb",
+  "risk_level": "Leve",
+  "estimated_risk_index": 0.232,
+  "estimated_range_90": [
+   0.024,
+   0.533
+  ],
+  "levels_in_range": [
+   "Leve",
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [],
+  "protective_factor": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": -0.108,
+    "direction": "baja el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 759.37,
+    "group_median": 874.7
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 88,
+   "missing_variables": []
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e2fce67b776a240279baa": {
+  "student_id": "621e2fce67b776a240279baa",
+  "risk_level": "Moderado",
+  "estimated_risk_index": 0.342,
+  "estimated_range_90": [
+   0.134,
+   0.643
+  ],
+  "levels_in_range": [
+   "Leve",
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [
+   {
+    "group": "Frecuencia cardíaca y HRV",
+    "shap_contribution": 0.032,
+    "direction": "sube el riesgo",
+    "main_variable": "nremhr_std",
+    "person_value": 10.42,
+    "group_median": 4.7
+   }
+  ],
+  "protective_factor": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": -0.073,
+    "direction": "baja el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 758.03,
+    "group_median": 874.7
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 64,
+   "missing_variables": []
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e301e67b776a240608a72": {
+  "student_id": "621e301e67b776a240608a72",
+  "risk_level": "Alto",
+  "estimated_risk_index": 0.525,
+  "estimated_range_90": [
+   0.317,
+   0.826
+  ],
+  "levels_in_range": [
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": 0.166,
+    "direction": "sube el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 1263.93,
+    "group_median": 874.7
+   }
+  ],
+  "protective_factor": [
+   {
+    "group": "Duración y eficiencia del sueño",
+    "shap_contribution": -0.026,
+    "direction": "baja el riesgo",
+    "main_variable": "sleep_efficiency_mean",
+    "person_value": 95.92,
+    "group_median": 94.71
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 53,
+   "missing_variables": [
+    "rmssd",
+    "nremhr",
+    "spo2",
+    "full_sleep_breathing_rate"
+   ]
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e30b267b776a240c5e13f": {
+  "student_id": "621e30b267b776a240c5e13f",
+  "risk_level": "Moderado",
+  "estimated_risk_index": 0.346,
+  "estimated_range_90": [
+   0.138,
+   0.647
+  ],
+  "levels_in_range": [
+   "Leve",
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [
+   {
+    "group": "Respiración y oxígeno",
+    "shap_contribution": 0.027,
+    "direction": "sube el riesgo",
+    "main_variable": "full_sleep_breathing_rate_std",
+    "person_value": 4.61,
+    "group_median": 0.84
+   },
+   {
+    "group": "Frecuencia cardíaca y HRV",
+    "shap_contribution": 0.021,
+    "direction": "sube el riesgo",
+    "main_variable": "nremhr_std",
+    "person_value": 17.08,
+    "group_median": 4.7
+   }
+  ],
+  "protective_factor": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": -0.086,
+    "direction": "baja el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 843.63,
+    "group_median": 874.7
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 55,
+   "missing_variables": [
+    "spo2"
+   ]
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e30e467b776a240e817c7": {
+  "student_id": "621e30e467b776a240e817c7",
+  "risk_level": "Alto",
+  "estimated_risk_index": 0.504,
+  "estimated_range_90": [
+   0.296,
+   0.805
+  ],
+  "levels_in_range": [
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": 0.048,
+    "direction": "sube el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 1147.35,
+    "group_median": 874.7
+   },
+   {
+    "group": "Frecuencia cardíaca y HRV",
+    "shap_contribution": 0.025,
+    "direction": "sube el riesgo",
+    "main_variable": "nremhr_std",
+    "person_value": 15.28,
+    "group_median": 4.7
+   },
+   {
+    "group": "Regularidad del sueño (variación entre noches)",
+    "shap_contribution": 0.025,
+    "direction": "sube el riesgo",
+    "main_variable": "sleep_duration_inconsistency",
+    "person_value": 146.11,
+    "group_median": 82.62
+   }
+  ],
+  "protective_factor": [
+   {
+    "group": "Duración y eficiencia del sueño",
+    "shap_contribution": -0.009,
+    "direction": "baja el riesgo",
+    "main_variable": "minutesAsleep_mean",
+    "person_value": 420.63,
+    "group_median": 388.45
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 30,
+   "missing_variables": []
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e323667b776a240f19134": {
+  "student_id": "621e323667b776a240f19134",
+  "risk_level": "Moderado",
+  "estimated_risk_index": 0.398,
+  "estimated_range_90": [
+   0.189,
+   0.699
+  ],
+  "levels_in_range": [
+   "Leve",
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": 0.026,
+    "direction": "sube el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 917.68,
+    "group_median": 874.7
+   }
+  ],
+  "protective_factor": [
+   {
+    "group": "Frecuencia cardíaca y HRV",
+    "shap_contribution": -0.025,
+    "direction": "baja el riesgo",
+    "main_variable": "resting_hr_mean",
+    "person_value": 72.98,
+    "group_median": 65.57
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 60,
+   "missing_variables": [
+    "spo2"
+   ]
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e326767b776a24012e179": {
+  "student_id": "621e326767b776a24012e179",
+  "risk_level": "Moderado",
+  "estimated_risk_index": 0.293,
+  "estimated_range_90": [
+   0.085,
+   0.594
+  ],
+  "levels_in_range": [
+   "Leve",
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [
+   {
+    "group": "Frecuencia cardíaca y HRV",
+    "shap_contribution": 0.013,
+    "direction": "sube el riesgo",
+    "main_variable": "rmssd_std",
+    "person_value": 24.16,
+    "group_median": 6.83
+   },
+   {
+    "group": "Duración y eficiencia del sueño",
+    "shap_contribution": 0.005,
+    "direction": "sube el riesgo",
+    "main_variable": "minutesAsleep_mean",
+    "person_value": 328.69,
+    "group_median": 388.45
+   }
+  ],
+  "protective_factor": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": -0.112,
+    "direction": "baja el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 709.51,
+    "group_median": 874.7
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 67,
+   "missing_variables": []
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e328667b776a240281372": {
+  "student_id": "621e328667b776a240281372",
+  "risk_level": "Alto",
+  "estimated_risk_index": 0.61,
+  "estimated_range_90": [
+   0.401,
+   0.911
+  ],
+  "levels_in_range": [
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": 0.25,
+    "direction": "sube el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 1390.98,
+    "group_median": 874.7
+   }
+  ],
+  "protective_factor": [
+   {
+    "group": "Frecuencia cardíaca y HRV",
+    "shap_contribution": -0.019,
+    "direction": "baja el riesgo",
+    "main_variable": "resting_hr_mean",
+    "person_value": 68.05,
+    "group_median": 65.57
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 6,
+   "missing_variables": [
+    "spo2"
+   ]
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e329067b776a2402ffad2": {
+  "student_id": "621e329067b776a2402ffad2",
+  "risk_level": "Moderado",
+  "estimated_risk_index": 0.289,
+  "estimated_range_90": [
+   0.08,
+   0.59
+  ],
+  "levels_in_range": [
+   "Leve",
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [
+   {
+    "group": "Duración y eficiencia del sueño",
+    "shap_contribution": 0.021,
+    "direction": "sube el riesgo",
+    "main_variable": "minutesAsleep_mean",
+    "person_value": 330.92,
+    "group_median": 388.45
+   }
+  ],
+  "protective_factor": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": -0.106,
+    "direction": "baja el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 708.6,
+    "group_median": 874.7
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 61,
+   "missing_variables": [
+    "spo2"
+   ]
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e32af67b776a24045b4cf": {
+  "student_id": "621e32af67b776a24045b4cf",
+  "risk_level": "Moderado",
+  "estimated_risk_index": 0.245,
+  "estimated_range_90": [
+   0.037,
+   0.546
+  ],
+  "levels_in_range": [
+   "Leve",
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [
+   {
+    "group": "Duración y eficiencia del sueño",
+    "shap_contribution": 0.006,
+    "direction": "sube el riesgo",
+    "main_variable": "sleep_efficiency_mean",
+    "person_value": 91.0,
+    "group_median": 94.71
+   }
+  ],
+  "protective_factor": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": -0.123,
+    "direction": "baja el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 805.83,
+    "group_median": 874.7
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 58,
+   "missing_variables": []
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e32d967b776a240627414": {
+  "student_id": "621e32d967b776a240627414",
+  "risk_level": "Alto",
+  "estimated_risk_index": 0.596,
+  "estimated_range_90": [
+   0.388,
+   0.897
+  ],
+  "levels_in_range": [
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": 0.178,
+    "direction": "sube el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 1348.1,
+    "group_median": 874.7
+   },
+   {
+    "group": "Regularidad del sueño (variación entre noches)",
+    "shap_contribution": 0.022,
+    "direction": "sube el riesgo",
+    "main_variable": "sleep_duration_inconsistency",
+    "person_value": 137.26,
+    "group_median": 82.62
+   },
+   {
+    "group": "Respiración y oxígeno",
+    "shap_contribution": 0.019,
+    "direction": "sube el riesgo",
+    "main_variable": "full_sleep_breathing_rate_std",
+    "person_value": 4.5,
+    "group_median": 0.84
+   }
+  ],
+  "protective_factor": [
+   {
+    "group": "Frecuencia cardíaca y HRV",
+    "shap_contribution": -0.031,
+    "direction": "baja el riesgo",
+    "main_variable": "resting_hr_mean",
+    "person_value": 70.37,
+    "group_median": 65.57
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 17,
+   "missing_variables": []
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e32e667b776a2406d2f1c": {
+  "student_id": "621e32e667b776a2406d2f1c",
+  "risk_level": "Moderado",
+  "estimated_risk_index": 0.295,
+  "estimated_range_90": [
+   0.087,
+   0.596
+  ],
+  "levels_in_range": [
+   "Leve",
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [],
+  "protective_factor": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": -0.106,
+    "direction": "baja el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 797.74,
+    "group_median": 874.7
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 90,
+   "missing_variables": []
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e332267b776a24092a584": {
+  "student_id": "621e332267b776a24092a584",
+  "risk_level": "Alto",
+  "estimated_risk_index": 0.534,
+  "estimated_range_90": [
+   0.326,
+   0.835
+  ],
+  "levels_in_range": [
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": 0.148,
+    "direction": "sube el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 1273.32,
+    "group_median": 874.7
+   },
+   {
+    "group": "Respiración y oxígeno",
+    "shap_contribution": 0.012,
+    "direction": "sube el riesgo",
+    "main_variable": "full_sleep_breathing_rate_mean",
+    "person_value": 17.58,
+    "group_median": 14.58
+   },
+   {
+    "group": "Regularidad del sueño (variación entre noches)",
+    "shap_contribution": 0.01,
+    "direction": "sube el riesgo",
+    "main_variable": "sleep_duration_inconsistency",
+    "person_value": 194.44,
+    "group_median": 82.62
+   }
+  ],
+  "protective_factor": [
+   {
+    "group": "Duración y eficiencia del sueño",
+    "shap_contribution": -0.027,
+    "direction": "baja el riesgo",
+    "main_variable": "minutesAsleep_mean",
+    "person_value": 545.62,
+    "group_median": 388.45
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 21,
+   "missing_variables": []
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e333967b776a240a3cd06": {
+  "student_id": "621e333967b776a240a3cd06",
+  "risk_level": "Moderado",
+  "estimated_risk_index": 0.441,
+  "estimated_range_90": [
+   0.233,
+   0.742
+  ],
+  "levels_in_range": [
+   "Leve",
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [
+   {
+    "group": "Respiración y oxígeno",
+    "shap_contribution": 0.046,
+    "direction": "sube el riesgo",
+    "main_variable": "full_sleep_breathing_rate_std",
+    "person_value": 6.72,
+    "group_median": 0.84
+   },
+   {
+    "group": "Regularidad del sueño (variación entre noches)",
+    "shap_contribution": 0.021,
+    "direction": "sube el riesgo",
+    "main_variable": "sleep_efficiency_std",
+    "person_value": 4.44,
+    "group_median": 2.7
+   },
+   {
+    "group": "Frecuencia cardíaca y HRV",
+    "shap_contribution": 0.019,
+    "direction": "sube el riesgo",
+    "main_variable": "nremhr_std",
+    "person_value": 18.58,
+    "group_median": 4.7
+   }
+  ],
+  "protective_factor": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": -0.054,
+    "direction": "baja el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 843.2,
+    "group_median": 874.7
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 93,
+   "missing_variables": []
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e337667b776a240ce78ab": {
+  "student_id": "621e337667b776a240ce78ab",
+  "risk_level": "Moderado",
+  "estimated_risk_index": 0.344,
+  "estimated_range_90": [
+   0.136,
+   0.645
+  ],
+  "levels_in_range": [
+   "Leve",
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [],
+  "protective_factor": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": -0.035,
+    "direction": "baja el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 879.64,
+    "group_median": 874.7
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 82,
+   "missing_variables": []
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e339967b776a240e502de": {
+  "student_id": "621e339967b776a240e502de",
+  "risk_level": "Moderado",
+  "estimated_risk_index": 0.322,
+  "estimated_range_90": [
+   0.114,
+   0.623
+  ],
+  "levels_in_range": [
+   "Leve",
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [
+   {
+    "group": "Frecuencia cardíaca y HRV",
+    "shap_contribution": 0.015,
+    "direction": "sube el riesgo",
+    "main_variable": "resting_hr_mean",
+    "person_value": 55.5,
+    "group_median": 65.57
+   },
+   {
+    "group": "Respiración y oxígeno",
+    "shap_contribution": 0.011,
+    "direction": "sube el riesgo",
+    "main_variable": "full_sleep_breathing_rate_std",
+    "person_value": 1.71,
+    "group_median": 0.84
+   }
+  ],
+  "protective_factor": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": -0.093,
+    "direction": "baja el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 725.7,
+    "group_median": 874.7
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 56,
+   "missing_variables": []
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e33b067b776a240f39e56": {
+  "student_id": "621e33b067b776a240f39e56",
+  "risk_level": "Moderado",
+  "estimated_risk_index": 0.294,
+  "estimated_range_90": [
+   0.086,
+   0.595
+  ],
+  "levels_in_range": [
+   "Leve",
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [
+   {
+    "group": "Duración y eficiencia del sueño",
+    "shap_contribution": 0.025,
+    "direction": "sube el riesgo",
+    "main_variable": "minutesAwake_mean",
+    "person_value": 43.7,
+    "group_median": 54.4
+   }
+  ],
+  "protective_factor": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": -0.094,
+    "direction": "baja el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 789.97,
+    "group_median": 874.7
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 66,
+   "missing_variables": []
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e33cf67b776a240087de9": {
+  "student_id": "621e33cf67b776a240087de9",
+  "risk_level": "Moderado",
+  "estimated_risk_index": 0.298,
+  "estimated_range_90": [
+   0.09,
+   0.599
+  ],
+  "levels_in_range": [
+   "Leve",
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [],
+  "protective_factor": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": -0.109,
+    "direction": "baja el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 724.34,
+    "group_median": 874.7
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 75,
+   "missing_variables": [
+    "spo2"
+   ]
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e342e67b776a2404ce460": {
+  "student_id": "621e342e67b776a2404ce460",
+  "risk_level": "Alto",
+  "estimated_risk_index": 0.68,
+  "estimated_range_90": [
+   0.472,
+   0.981
+  ],
+  "levels_in_range": [
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": 0.193,
+    "direction": "sube el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 1236.71,
+    "group_median": 874.7
+   },
+   {
+    "group": "Frecuencia cardíaca y HRV",
+    "shap_contribution": 0.04,
+    "direction": "sube el riesgo",
+    "main_variable": "resting_hr_mean",
+    "person_value": 61.73,
+    "group_median": 65.57
+   },
+   {
+    "group": "Regularidad del sueño (variación entre noches)",
+    "shap_contribution": 0.019,
+    "direction": "sube el riesgo",
+    "main_variable": "minutesAwake_std",
+    "person_value": 28.54,
+    "group_median": 19.66
+   }
+  ],
+  "protective_factor": [],
+  "data_quality": {
+   "nights_with_sleep_data": 37,
+   "missing_variables": [
+    "spo2"
+   ]
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e345267b776a240691064": {
+  "student_id": "621e345267b776a240691064",
+  "risk_level": "Alto",
+  "estimated_risk_index": 0.587,
+  "estimated_range_90": [
+   0.378,
+   0.888
+  ],
+  "levels_in_range": [
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": 0.165,
+    "direction": "sube el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 1298.27,
+    "group_median": 874.7
+   },
+   {
+    "group": "Regularidad del sueño (variación entre noches)",
+    "shap_contribution": 0.041,
+    "direction": "sube el riesgo",
+    "main_variable": "sleep_duration_inconsistency",
+    "person_value": 194.28,
+    "group_median": 82.62
+   }
+  ],
+  "protective_factor": [
+   {
+    "group": "Frecuencia cardíaca y HRV",
+    "shap_contribution": -0.017,
+    "direction": "baja el riesgo",
+    "main_variable": "resting_hr_mean",
+    "person_value": 70.46,
+    "group_median": 65.57
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 10,
+   "missing_variables": [
+    "rmssd",
+    "nremhr",
+    "spo2",
+    "full_sleep_breathing_rate"
+   ]
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e346f67b776a24081744f": {
+  "student_id": "621e346f67b776a24081744f",
+  "risk_level": "Moderado",
+  "estimated_risk_index": 0.331,
+  "estimated_range_90": [
+   0.123,
+   0.632
+  ],
+  "levels_in_range": [
+   "Leve",
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [
+   {
+    "group": "Respiración y oxígeno",
+    "shap_contribution": 0.051,
+    "direction": "sube el riesgo",
+    "main_variable": "full_sleep_breathing_rate_std",
+    "person_value": 4.59,
+    "group_median": 0.84
+   }
+  ],
+  "protective_factor": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": -0.096,
+    "direction": "baja el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 802.85,
+    "group_median": 874.7
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 220,
+   "missing_variables": [
+    "spo2"
+   ]
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e34ca67b776a240be3b69": {
+  "student_id": "621e34ca67b776a240be3b69",
+  "risk_level": "Alto",
+  "estimated_risk_index": 0.51,
+  "estimated_range_90": [
+   0.302,
+   0.812
+  ],
+  "levels_in_range": [
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": 0.19,
+    "direction": "sube el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 1261.49,
+    "group_median": 874.7
+   }
+  ],
+  "protective_factor": [
+   {
+    "group": "Frecuencia cardíaca y HRV",
+    "shap_contribution": -0.032,
+    "direction": "baja el riesgo",
+    "main_variable": "resting_hr_mean",
+    "person_value": 75.23,
+    "group_median": 65.57
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 36,
+   "missing_variables": [
+    "spo2"
+   ]
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e34ec67b776a240d60873": {
+  "student_id": "621e34ec67b776a240d60873",
+  "risk_level": "Alto",
+  "estimated_risk_index": 0.524,
+  "estimated_range_90": [
+   0.316,
+   0.825
+  ],
+  "levels_in_range": [
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": 0.177,
+    "direction": "sube el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 1375.07,
+    "group_median": 874.7
+   },
+   {
+    "group": "Duración y eficiencia del sueño",
+    "shap_contribution": 0.015,
+    "direction": "sube el riesgo",
+    "main_variable": "sleep_efficiency_mean",
+    "person_value": 93.7,
+    "group_median": 94.71
+   }
+  ],
+  "protective_factor": [
+   {
+    "group": "Frecuencia cardíaca y HRV",
+    "shap_contribution": -0.027,
+    "direction": "baja el riesgo",
+    "main_variable": "resting_hr_mean",
+    "person_value": 67.45,
+    "group_median": 65.57
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 10,
+   "missing_variables": []
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e351a67b776a240f6204b": {
+  "student_id": "621e351a67b776a240f6204b",
+  "risk_level": "Moderado",
+  "estimated_risk_index": 0.322,
+  "estimated_range_90": [
+   0.114,
+   0.624
+  ],
+  "levels_in_range": [
+   "Leve",
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [
+   {
+    "group": "Duración y eficiencia del sueño",
+    "shap_contribution": 0.009,
+    "direction": "sube el riesgo",
+    "main_variable": "sleep_efficiency_mean",
+    "person_value": 88.0,
+    "group_median": 94.71
+   }
+  ],
+  "protective_factor": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": -0.081,
+    "direction": "baja el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 913.93,
+    "group_median": 874.7
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 104,
+   "missing_variables": []
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e360b67b776a24039709f": {
+  "student_id": "621e360b67b776a24039709f",
+  "risk_level": "Alto",
+  "estimated_risk_index": 0.498,
+  "estimated_range_90": [
+   0.289,
+   0.799
+  ],
+  "levels_in_range": [
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": 0.059,
+    "direction": "sube el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 1043.75,
+    "group_median": 874.7
+   },
+   {
+    "group": "Frecuencia cardíaca y HRV",
+    "shap_contribution": 0.011,
+    "direction": "sube el riesgo",
+    "main_variable": "nremhr_std",
+    "person_value": 14.08,
+    "group_median": 4.7
+   },
+   {
+    "group": "Duración y eficiencia del sueño",
+    "shap_contribution": 0.011,
+    "direction": "sube el riesgo",
+    "main_variable": "sleep_efficiency_mean",
+    "person_value": 93.67,
+    "group_median": 94.71
+   }
+  ],
+  "protective_factor": [],
+  "data_quality": {
+   "nights_with_sleep_data": 52,
+   "missing_variables": [
+    "spo2"
+   ]
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e362467b776a2404ad513": {
+  "student_id": "621e362467b776a2404ad513",
+  "risk_level": "Moderado",
+  "estimated_risk_index": 0.44,
+  "estimated_range_90": [
+   0.232,
+   0.742
+  ],
+  "levels_in_range": [
+   "Leve",
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": 0.03,
+    "direction": "sube el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 1021.26,
+    "group_median": 874.7
+   },
+   {
+    "group": "Respiración y oxígeno",
+    "shap_contribution": 0.016,
+    "direction": "sube el riesgo",
+    "main_variable": "full_sleep_breathing_rate_std",
+    "person_value": 2.43,
+    "group_median": 0.84
+   },
+   {
+    "group": "Regularidad del sueño (variación entre noches)",
+    "shap_contribution": 0.005,
+    "direction": "sube el riesgo",
+    "main_variable": "sleep_duration_inconsistency",
+    "person_value": 106.32,
+    "group_median": 82.62
+   }
+  ],
+  "protective_factor": [
+   {
+    "group": "Duración y eficiencia del sueño",
+    "shap_contribution": -0.01,
+    "direction": "baja el riesgo",
+    "main_variable": "sleep_efficiency_mean",
+    "person_value": 96.92,
+    "group_median": 94.71
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 51,
+   "missing_variables": []
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e366567b776a24076a727": {
+  "student_id": "621e366567b776a24076a727",
+  "risk_level": "Moderado",
+  "estimated_risk_index": 0.294,
+  "estimated_range_90": [
+   0.086,
+   0.595
+  ],
+  "levels_in_range": [
+   "Leve",
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [
+   {
+    "group": "Duración y eficiencia del sueño",
+    "shap_contribution": 0.009,
+    "direction": "sube el riesgo",
+    "main_variable": "sleep_efficiency_mean",
+    "person_value": 92.61,
+    "group_median": 94.71
+   }
+  ],
+  "protective_factor": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": -0.115,
+    "direction": "baja el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 690.8,
+    "group_median": 874.7
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 62,
+   "missing_variables": []
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e36c267b776a240ba2756": {
+  "student_id": "621e36c267b776a240ba2756",
+  "risk_level": "Moderado",
+  "estimated_risk_index": 0.426,
+  "estimated_range_90": [
+   0.218,
+   0.727
+  ],
+  "levels_in_range": [
+   "Leve",
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": 0.044,
+    "direction": "sube el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 1000.5,
+    "group_median": 874.7
+   },
+   {
+    "group": "Duración y eficiencia del sueño",
+    "shap_contribution": 0.009,
+    "direction": "sube el riesgo",
+    "main_variable": "minutesAsleep_mean",
+    "person_value": 344.05,
+    "group_median": 388.45
+   }
+  ],
+  "protective_factor": [
+   {
+    "group": "Regularidad del sueño (variación entre noches)",
+    "shap_contribution": -0.025,
+    "direction": "baja el riesgo",
+    "main_variable": "sleep_duration_inconsistency",
+    "person_value": 77.48,
+    "group_median": 82.62
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 44,
+   "missing_variables": [
+    "rmssd",
+    "nremhr",
+    "spo2",
+    "full_sleep_breathing_rate"
+   ]
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e36dd67b776a240ce9a45": {
+  "student_id": "621e36dd67b776a240ce9a45",
+  "risk_level": "Alto",
+  "estimated_risk_index": 0.521,
+  "estimated_range_90": [
+   0.313,
+   0.822
+  ],
+  "levels_in_range": [
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": 0.16,
+    "direction": "sube el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 1313.13,
+    "group_median": 874.7
+   },
+   {
+    "group": "Duración y eficiencia del sueño",
+    "shap_contribution": 0.017,
+    "direction": "sube el riesgo",
+    "main_variable": "minutesAsleep_mean",
+    "person_value": 90.0,
+    "group_median": 388.45
+   },
+   {
+    "group": "Frecuencia cardíaca y HRV",
+    "shap_contribution": 0.006,
+    "direction": "sube el riesgo",
+    "main_variable": "resting_hr_mean",
+    "person_value": 60.4,
+    "group_median": 65.57
+   }
+  ],
+  "protective_factor": [
+   {
+    "group": "Regularidad del sueño (variación entre noches)",
+    "shap_contribution": -0.051,
+    "direction": "baja el riesgo",
+    "main_variable": "sleep_duration_inconsistency",
+    "person_value": 45.08,
+    "group_median": 82.62
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 3,
+   "missing_variables": [
+    "rmssd",
+    "nremhr",
+    "spo2",
+    "full_sleep_breathing_rate"
+   ]
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e36f967b776a240e5e7c9": {
+  "student_id": "621e36f967b776a240e5e7c9",
+  "risk_level": "Moderado",
+  "estimated_risk_index": 0.312,
+  "estimated_range_90": [
+   0.104,
+   0.613
+  ],
+  "levels_in_range": [
+   "Leve",
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [],
+  "protective_factor": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": -0.038,
+    "direction": "baja el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 874.7,
+    "group_median": 874.7
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 45,
+   "missing_variables": []
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ },
+ "621e375b67b776a240290cdc": {
+  "student_id": "621e375b67b776a240290cdc",
+  "risk_level": "Moderado",
+  "estimated_risk_index": 0.291,
+  "estimated_range_90": [
+   0.083,
+   0.593
+  ],
+  "levels_in_range": [
+   "Leve",
+   "Moderado",
+   "Alto"
+  ],
+  "risk_factors": [],
+  "protective_factor": [
+   {
+    "group": "Actividad y sedentarismo",
+    "shap_contribution": -0.072,
+    "direction": "baja el riesgo",
+    "main_variable": "sedentary_minutes_mean",
+    "person_value": 830.37,
+    "group_median": 874.7
+   }
+  ],
+  "data_quality": {
+   "nights_with_sleep_data": 66,
+   "missing_variables": [
+    "spo2"
+   ]
+  },
+  "explanation_note": "Factores asociados que el modelo usó; no son causas comprobadas. No es un diagnóstico."
+ }
+}

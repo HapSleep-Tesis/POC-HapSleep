@@ -25,9 +25,16 @@ completo del proyecto.
   payload para el LLM. Notebook: [`POC_FINAL/POC_Final_SHAP.ipynb`](POC_FINAL/POC_Final_SHAP.ipynb).
 - [`INFORME_POCs.md`](INFORME_POCs.md) — informe corto de todos los PoC (POC1, 1.3, 1.5, final), cortes de niveles y
   por qué el PSQI real sería mejor.
+- [`POC_LLM/`](POC_LLM/) — PoC del LLM: recomendaciones a partir del nivel y los factores SHAP (C0 solo nivel / C1 con factores /
+  C2 factores verbalizados por código), validador automático y respaldo. Notebook: [`POC_LLM/POC_LLM.ipynb`](POC_LLM/POC_LLM.ipynb).
+- [`POC_GLOBEM/`](POC_GLOBEM/) — PoC con GLOBEM (Fitbit, 705 persona-años de universitarios, sin PSQI): estabilidad por persona,
+  validez convergente con cuestionarios de salud mental, alerta del sedentarismo y variación del Random Forest con n = 37 a 635.
+  Notebook: [`POC_GLOBEM/POC_GLOBEM.ipynb`](POC_GLOBEM/POC_GLOBEM.ipynb). Evidencia de apoyo, no es la prueba de riesgo de sueño.
 - [`multiwearable/`](multiwearable/) — PoC multi-wearable: investigación de qué variables entrega cada marca de reloj
   Android (Fitbit, Samsung, Amazfit, Xiaomi) vía Health Connect / Google Health API
   ([`variables_por_plataforma.md`](multiwearable/variables_por_plataforma.md)) y un ensayo exploratorio
   ([`POC_Multiwearable.ipynb`](multiwearable/POC_Multiwearable.ipynb)): costo de usar solo las variables de cada reloj y
   prototipo de la capa de estandarización. Con datos reales de Xiaomi y el PSQI de MMASH:
-  [`POC_Multiwearable_Datos_Reales.ipynb`](multiwearable/POC_Multiwearable_Datos_Reales.ipynb).
+  [`POC_Multiwearable_Datos_Reales.ipynb`](multiwearable/POC_Multiwearable_Datos_Reales.ipynb). Robustez del modelo generalizado con
+  sesgos por marca tomados de la literatura y prueba de aproximar sedentarios:
+  [`POC_Multiwearable_Robustez.ipynb`](multiwearable/POC_Multiwearable_Robustez.ipynb).
